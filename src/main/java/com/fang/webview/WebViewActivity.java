@@ -73,7 +73,8 @@ public class WebViewActivity extends WEActivity implements View.OnClickListener 
             @Override
             public void onClick(View v) {
                 mShareHandler.share(mWebView.getUrl(), mWebView.getTitle(), "",
-                        BitmapFactory.decodeResource(mContext.getResources(), R.drawable.we108x108), WXConstants.SHARE_ALL);
+                        BitmapFactory.decodeResource(mContext.getResources(),
+                                R.drawable.we108x108), WXConstants.SHARE_ALL);
             }
         });
         initWebView();
@@ -162,7 +163,8 @@ public class WebViewActivity extends WEActivity implements View.OnClickListener 
             mWebView.loadUrl(mUrl);
         } else if(id == R.id.share) {
             mShareHandler.share(mWebView.getUrl(), mWebView.getTitle(), "",
-                    BitmapFactory.decodeResource(mContext.getResources(), R.drawable.we108x108), WXConstants.SHARE_ALL);
+                    BitmapFactory.decodeResource(mContext.getResources(),
+                            R.drawable.we108x108), WXConstants.SHARE_ALL);
         } else if (id == R.id.search_frame) {
             BaseUtil.showKeyBoard(mSearchView.getSearchEditView(), false);
             mSearchFrame.setVisibility(View.GONE);

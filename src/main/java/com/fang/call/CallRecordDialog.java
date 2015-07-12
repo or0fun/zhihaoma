@@ -28,13 +28,13 @@ import com.fang.business.BusinessHelper;
 import com.fang.callsms.MainActivity;
 import com.fang.callsms.R;
 import com.fang.common.controls.CustomDialog;
+import com.fang.common.util.BaseUtil;
+import com.fang.common.util.StringUtil;
+import com.fang.common.util.ViewUtil;
 import com.fang.contact.ContactHelper;
 import com.fang.logs.LogCode;
 import com.fang.logs.LogOperate;
-import com.fang.common.util.BaseUtil;
 import com.fang.util.MessageWhat;
-import com.fang.common.util.StringUtil;
-import com.fang.common.util.ViewUtil;
 import com.fang.weixin.WXConstants;
 import com.fang.weixin.WXShareHandler;
 
