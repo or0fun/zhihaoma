@@ -137,9 +137,12 @@ public class PhoneReceiver extends BroadcastReceiver {
 	}
 	@Override
 	public void onReceive(Context context, Intent intent) {
+        if (null == intent) {
+            return;
+        }
 		mContext = context;
 		
-		if (intent.getAction().equals(Intent.ACTION_NEW_OUTGOING_CALL)) {
+		if (Intent.ACTION_NEW_OUTGOING_CALL.equals(intent.getAction())) {
 			//去电
 			mPhoneNumber = intent.getStringExtra(Intent.EXTRA_PHONE_NUMBER);
 			DebugLog.d(TAG, mPhoneNumber);
@@ -148,10 +151,10 @@ public class PhoneReceiver extends BroadcastReceiver {
 			myHandler.sendMessage(myHandler.obtainMessage(OUTGOING_CALL_MSG,
 					mPhoneNumber));
 
-		} else if (intent.getAction().equals(ACTION_REMOVE)) {
+		} else if (ACTION_REMOVE.equals(intent.getAction())) {
 			myHandler.sendEmptyMessage(REMOVE_MSG);
 		}
-		else if(intent.getAction().equals(TelephonyManager.ACTION_PHONE_STATE_CHANGED)){
+		else if(TelephonyManager.ACTION_PHONE_STATE_CHANGED.equals(intent.getAction())){
 			TelephonyManager tm = (TelephonyManager) context
 					.getSystemService(Service.TELEPHONY_SERVICE);
 			

@@ -16,13 +16,19 @@ import com.fang.util.SharedPreferencesHelper;
 
 public class SMSReceiver extends BroadcastReceiver {
 	
-	private String TAG = SMSReceiver.class.getSimpleName();
+	private String TAG = "SMSReceiver";
 	protected Handler mHandler;
 	
 	@Override
 	public void onReceive(Context context, Intent intent) {
 
+        if(null == intent) {
+            return;
+        }
 		SmsMessage[] messages = getMessagesFromIntent(intent);
+        if (null == messages) {
+            return;
+        }
 		mHandler = SMSHandler.getInstance(context);
 
 		for (SmsMessage message : messages) {
@@ -66,7 +72,18 @@ public class SMSReceiver extends BroadcastReceiver {
 	 * @return
 	 */
 	public final SmsMessage[] getMessagesFromIntent(Intent intent) {
-		Object[] messages = (Object[]) intent.getSerializableExtra("pdus");
+        if (null == intent) {
+            return null;
+        }
+		Object[] messages = null;
+        try {
+            messages = (Object[]) intent.getSerializableExtra("pdus");
+        } catch (Exception e) {
+            DebugLog.e(TAG, e.toString());
+        }
+        if (null == messages) {
+            return null;
+        }
 		byte[][] pduObjs = new byte[messages.length][];
 		for (int i = 0; i < messages.length; i++) {
 			pduObjs[i] = (byte[]) messages[i];

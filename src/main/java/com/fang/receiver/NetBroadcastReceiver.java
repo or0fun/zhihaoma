@@ -17,7 +17,7 @@ public class NetBroadcastReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
         String action = intent.getAction();
-        if (action.equals(ConnectivityManager.CONNECTIVITY_ACTION)) {
+        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(action)) {
         	if (System.currentTimeMillis() - Global.netBroadcastTime > CustomConstant.QUARTER_HOUR
             && NetWorkUtil.isNetworkConnected(context)) {
                 Global.netBroadcastTime = System.currentTimeMillis();
