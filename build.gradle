@@ -1,0 +1,55 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 21
+    buildToolsVersion '21.1.2'
+
+    defaultConfig {
+        applicationId "com.fang.callsms"
+        minSdkVersion 14
+        targetSdkVersion 14
+    }
+
+    signingConfigs {
+        release {
+            storeFile file("baiwanlu.keystore")
+            storePassword "fangjun"
+            keyAlias "fang"
+            keyPassword "fangjun"
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+            signingConfig signingConfigs.release
+        }
+        debug {
+            signingConfig signingConfigs.release
+        }
+    }
+    productFlavors {
+        _develop {}
+        wandoujia {}
+        baidu {}
+        c360 {}
+        blog {}
+        hiapk {}
+        anzhi {}
+        qq {}
+        lenovo {}
+        pp {}
+    }
+}
+
+dependencies {
+    compile fileTree(dir: 'libs', include: ['*.jar'])
+    compile project(':qrcode')
+    compile 'com.android.support:support-v4:21.0.3'
+    compile 'com.android.support:support-v13:21.0.3'
+    compile project(':weixin')
+
+//    debugCompile 'com.squareup.leakcanary:leakcanary-android:1.3'
+//    releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.3'
+}
