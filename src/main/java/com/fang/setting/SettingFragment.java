@@ -22,7 +22,7 @@ import com.fang.common.controls.CustomSlideSwitch;
 import com.fang.common.controls.CustomSwitchPreference;
 import com.fang.common.util.DebugLog;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.weather.WeatherHelper;
 import com.fang.weixin.WXConstants;
 

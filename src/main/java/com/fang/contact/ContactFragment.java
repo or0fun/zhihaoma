@@ -31,12 +31,12 @@ import com.fang.callsms.R;
 import com.fang.common.controls.CustomEditText;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.LogOperate;
 import com.fang.common.util.StringUtil;
 import com.fang.contact.MyLetterListView.OnTouchingLetterChangedListener;
 import com.fang.database.NumberDatabaseManager;
 import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
 import com.fang.util.MessageWhat;
 
 import java.util.ArrayList;

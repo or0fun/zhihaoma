@@ -1,19 +1,19 @@
 package com.fang.comment;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.os.Handler;
 
-import com.fang.net.NetRequestListener;
-import com.fang.net.NetRequestResult;
-import com.fang.net.NetRequestResultCode;
-import com.fang.net.NetResuestHelper;
-import com.fang.net.ServerUtil;
+import com.fang.common.net.NetRequestListener;
+import com.fang.common.net.NetRequestResult;
+import com.fang.common.net.NetRequestResultCode;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.ServerUtil;
+import com.fang.net.NetResuestHelper;
 import com.fang.util.MessageWhat;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 /**
  * 吐槽帮助类

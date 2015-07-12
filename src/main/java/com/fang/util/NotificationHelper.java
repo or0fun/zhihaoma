@@ -13,7 +13,7 @@ import com.fang.common.util.StringUtil;
 import com.fang.datatype.CallFrom;
 import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.webview.WebViewActivity;
 
 /**

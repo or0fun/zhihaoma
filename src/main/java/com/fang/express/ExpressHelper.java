@@ -4,14 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.fang.business.BusinessHelper;
+import com.fang.common.net.IResponseListener;
+import com.fang.common.net.ResponseInfo;
 import com.fang.common.util.BaseUtil;
-import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
-import com.fang.net.IResponseListener;
-import com.fang.net.ResponseInfo;
 import com.fang.common.util.DebugLog;
-import com.fang.util.NetWorkUtil;
+import com.fang.common.util.LogOperate;
+import com.fang.common.util.NetWorkUtil;
+import com.fang.logs.LogCode;
 import com.fang.util.NotificationHelper;
+import com.fang.util.RequestUtil;
 import com.fang.util.SharedPreferencesHelper;
 
 import java.util.List;

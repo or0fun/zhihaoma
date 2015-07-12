@@ -15,12 +15,13 @@ import com.fang.common.CustomConstant;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
 import com.fang.common.util.MapUtil;
+import com.fang.common.util.NetWorkUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.datatype.CallFrom;
 import com.fang.datatype.ExtraName;
 import com.fang.map.BDMapListener;
-import com.fang.net.ServerUtil;
-import com.fang.util.NetWorkUtil;
+import com.fang.common.util.ServerUtil;
+import com.fang.util.RequestUtil;
 import com.fang.util.NotificationHelper;
 import com.fang.util.SharedPreferencesHelper;
 
@@ -61,7 +62,7 @@ public class WeatherHelper {
                         MapUtil.getInstance().getLocationClient().requestLocation();
                         return;
                     }
-                    String weather = NetWorkUtil.getInstance().searchWeather(2,
+                    String weather = RequestUtil.getInstance().searchWeather(2,
                             BDMapListener.getInstance().getBdLocation().getCity(),
                             ServerUtil.getInstance(context).getUserID());
                     if (!StringUtil.isEmpty(weather)) {

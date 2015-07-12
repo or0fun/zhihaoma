@@ -9,10 +9,12 @@ import android.util.DisplayMetrics;
 import android.view.WindowManager;
 
 import com.fang.background.BackgroundService;
+import com.fang.base.RequestUrl;
 import com.fang.common.CustomConstant;
 import com.fang.common.base.Global;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.MapUtil;
+import com.fang.common.util.ServerUtil;
 import com.fang.map.BDMapListener;
 import com.fang.receiver.MainService;
 import com.fang.util.SharedPreferencesHelper;
@@ -49,6 +51,12 @@ public class MainApp extends Application implements Thread.UncaughtExceptionHand
         com.fang.util.SharedPreferencesHelper.getInstance().init(this);
 
         MapUtil.init(getApplicationContext(), BDMapListener.getInstance());
+
+        if (Global.debug) {
+            ServerUtil.getInstance(this).setPostUrl(RequestUrl.DEFAULT_POST_URL_TEST);
+        } else {
+            ServerUtil.getInstance(this).setPostUrl(RequestUrl.DEFAULT_POST_URL);
+        }
 
         this.startService(new Intent(this, MainService.class));
         this.startService(new Intent(this, BackgroundService.class));

@@ -1,15 +1,12 @@
 package com.fang.util;
 
 import android.content.Context;
-import android.net.ConnectivityManager;
-import android.net.NetworkInfo;
-import android.net.wifi.WifiManager;
 import android.text.TextUtils;
 
 import com.fang.base.RequestUrl;
+import com.fang.common.security.AESUtil;
 import com.fang.common.util.DebugLog;
 import com.fang.common.util.StringUtil;
-import com.fang.security.AESUtil;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.ClientProtocolException;
@@ -20,118 +17,17 @@ import org.apache.http.util.EntityUtils;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 
-public class NetWorkUtil {
+public class RequestUtil {
 	private static final String TAG = "NetWorkUtil";
-	private static NetWorkUtil mInstance = new NetWorkUtil();
+	private static RequestUtil mInstance = new RequestUtil();
 	private AESUtil mAesUtil;
 
-	private NetWorkUtil() {
+	private RequestUtil() {
 		mAesUtil = new AESUtil();
 	}
 
-	public static NetWorkUtil getInstance() {
+	public static RequestUtil getInstance() {
 		return mInstance;
-	}
-
-	/**
-	 * 网络是否连接
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean isNetworkConnected(Context context) {
-		if (context != null) {
-			ConnectivityManager connectivityManager = (ConnectivityManager) context
-					.getSystemService(Context.CONNECTIVITY_SERVICE);
-			NetworkInfo networkInfo = connectivityManager
-					.getActiveNetworkInfo();
-			if (networkInfo != null) {
-				return networkInfo.isConnected();
-			}
-		}
-		return false;
-	}
-
-    /**
-     * wifi连接
-     * @param context
-     * @return
-     */
-    public static boolean isWifiConnected(Context context) {
-        if (context != null) {
-            ConnectivityManager connectivityManager = (ConnectivityManager) context
-                    .getSystemService(Context.CONNECTIVITY_SERVICE);
-            NetworkInfo networkInfo = connectivityManager
-                    .getActiveNetworkInfo();
-            if (networkInfo != null && networkInfo.isConnected()) {
-                return networkInfo.getType() == ConnectivityManager.TYPE_WIFI;
-            }
-        }
-        return false;
-    }
-
-	/**
-	 * 移动网络是否连接
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean is3GAvailable(Context context) {
-		ConnectivityManager connectivity = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		if (connectivity == null) {
-			DebugLog.d(TAG, "newwork is off");
-			return false;
-		} else {
-			NetworkInfo info = connectivity.getActiveNetworkInfo();
-			if (info == null) {
-				DebugLog.d(TAG, "newwork is off");
-				return false;
-			} else {
-				if (info.isAvailable()) {
-					DebugLog.d(TAG, "newwork is on");
-					return true;
-				}
-			}
-		}
-		DebugLog.d(TAG, "newwork is off");
-		return false;
-	}
-
-	/**
-	 * WIFI 是否可用
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean isWiFiAnable(Context context) {
-		WifiManager mWifiManager = (WifiManager) context
-				.getSystemService(Context.WIFI_SERVICE);
-		if (mWifiManager.isWifiEnabled()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
-	 * WIFI 是否开启
-	 * 
-	 * @param context
-	 * @return
-	 */
-	public static boolean isWiFiActive(Context context) {
-		ConnectivityManager connManager = (ConnectivityManager) context
-				.getSystemService(Context.CONNECTIVITY_SERVICE);
-		NetworkInfo mWifi = connManager
-				.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-
-		if (mWifi.isConnected()) {
-			DebugLog.d(TAG, "newwork is on");
-			return true;
-		}
-		DebugLog.d(TAG, "newwork is off");
-		return false;
 	}
 
 	/**

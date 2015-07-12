@@ -33,7 +33,7 @@ import com.fang.common.util.StringUtil;
 import com.fang.common.util.ViewUtil;
 import com.fang.contact.ContactHelper;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.util.MessageWhat;
 import com.fang.weixin.WXConstants;
 import com.fang.weixin.WXShareHandler;

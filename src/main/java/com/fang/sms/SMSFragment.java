@@ -24,7 +24,7 @@ import com.fang.common.util.BaseUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.receiver.AlarmReceiver;
 import com.fang.util.SharedPreferencesHelper;
 

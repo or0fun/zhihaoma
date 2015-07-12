@@ -23,16 +23,16 @@ import android.widget.TextView;
 import com.fang.business.BusinessHelper;
 import com.fang.callsms.R;
 import com.fang.comment.CommentHelper;
-import com.fang.contact.ContactHelper;
-import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
-import com.fang.receiver.PhoneReceiver;
-import com.fang.speach.SpeachHelper;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.LogOperate;
+import com.fang.common.util.StringUtil;
+import com.fang.contact.ContactHelper;
+import com.fang.logs.LogCode;
+import com.fang.receiver.PhoneReceiver;
+import com.fang.speach.SpeachHelper;
 import com.fang.util.MessageWhat;
 import com.fang.util.SharedPreferencesHelper;
-import com.fang.common.util.StringUtil;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
@@ -123,7 +123,7 @@ public class CallDialog implements OnClickListener {
 							broadcastContent(createCallBroadcastContent());
 							// 日志
 							LogOperate.updateLog(mContext,
-									LogCode.CALL_BROADCAST);
+                                    LogCode.CALL_BROADCAST);
 						}
 					}
 				}

@@ -3,14 +3,14 @@ package com.fang.push;
 import android.content.Context;
 import android.util.Log;
 
+import com.fang.common.net.NetRequestListener;
+import com.fang.common.net.NetRequestResult;
+import com.fang.common.net.NetRequestResultCode;
 import com.fang.common.util.BaseUtil;
-import com.fang.net.NetRequestListener;
-import com.fang.net.NetRequestResult;
-import com.fang.net.NetRequestResultCode;
-import com.fang.net.NetResuestHelper;
-import com.fang.net.ServerUtil;
-import com.fang.util.NotificationHelper;
+import com.fang.common.util.ServerUtil;
 import com.fang.common.util.StringUtil;
+import com.fang.net.NetResuestHelper;
+import com.fang.util.NotificationHelper;
 
 import org.json.JSONArray;
 import org.json.JSONException;

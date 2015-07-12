@@ -20,10 +20,10 @@ import android.widget.TextView;
 import com.fang.base.WEActivity;
 import com.fang.business.BusinessHelper;
 import com.fang.callsms.R;
+import com.fang.common.util.LogOperate;
+import com.fang.common.util.NetWorkUtil;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
 import com.fang.util.MessageWhat;
-import com.fang.util.NetWorkUtil;
 import com.fang.util.SharedPreferencesHelper;
 
 import java.util.ArrayList;

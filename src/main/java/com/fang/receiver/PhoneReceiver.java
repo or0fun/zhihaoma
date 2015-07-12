@@ -15,7 +15,7 @@ import com.fang.callsms.R;
 import com.fang.contact.ContactHelper;
 import com.fang.listener.IPhoneStateListener;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.common.util.DebugLog;
 import com.fang.util.SharedPreferencesHelper;
 

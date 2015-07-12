@@ -4,16 +4,17 @@ import android.content.Context;
 import android.os.Handler;
 
 import com.fang.callsms.R;
+import com.fang.common.net.IResponseListener;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.NetWorkUtil;
+import com.fang.common.util.ServerUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.database.NumberDatabaseManager;
 import com.fang.datatype.ExtraName;
 import com.fang.express.ExpressInfo;
-import com.fang.net.IResponseListener;
-import com.fang.net.ServerUtil;
 import com.fang.util.MessageWhat;
-import com.fang.util.NetWorkUtil;
+import com.fang.util.RequestUtil;
 
 import java.util.List;
 import java.util.Map;
@@ -51,7 +52,7 @@ public class BusinessHelper {
                     }
                 }
 				if (NetWorkUtil.isNetworkConnected(context)) {
-					infoString = NetWorkUtil.getInstance().searchPhone(context, number, ServerUtil.getInstance(context).getUserID());
+					infoString = RequestUtil.getInstance().searchPhone(context, number, ServerUtil.getInstance(context).getUserID());
 					if (!infoString.endsWith(context.getString(R.string.number_unknow))) {
 						NumberDatabaseManager.getInstance(context).update(number, infoString);
 					}
@@ -90,7 +91,7 @@ public class BusinessHelper {
 					String infoString = NumberDatabaseManager.getInstance(context).query(
 							number);
 					if (StringUtil.isEmpty(infoString) && NetWorkUtil.isNetworkConnected(context)) {
-						infoString = NetWorkUtil.getInstance().searchPhone(context, number, ServerUtil.getInstance(context).getUserID());
+						infoString = RequestUtil.getInstance().searchPhone(context, number, ServerUtil.getInstance(context).getUserID());
 						NumberDatabaseManager.getInstance(context).update(number, infoString);
                         DebugLog.d(TAG, "getNumberInfo:" + number + "= " + infoString);
 					}
@@ -131,7 +132,7 @@ public class BusinessHelper {
         BaseUtil.excute(new Runnable() {
             @Override
             public void run() {
-                String infoString = NetWorkUtil.getInstance().searchExpress(
+                String infoString = RequestUtil.getInstance().searchExpress(
                         context,
                         info.getCompany(),
                         info.getNumber(),
@@ -170,7 +171,7 @@ public class BusinessHelper {
         BaseUtil.excute(new Runnable() {
 			@Override
 			public void run() {
-				String infoString = NetWorkUtil.getInstance().searchExpress(
+				String infoString = RequestUtil.getInstance().searchExpress(
 						context, 
 						info.getCompany(), 
 						info.getNumber(), 
@@ -209,7 +210,7 @@ public class BusinessHelper {
         BaseUtil.excute(new Runnable() {
 			@Override
 			public void run() {
-				String infoString = NetWorkUtil.getInstance().searchWeather(
+				String infoString = RequestUtil.getInstance().searchWeather(
 						context, 
 						city,
 						ServerUtil.getInstance(context).getUserID());

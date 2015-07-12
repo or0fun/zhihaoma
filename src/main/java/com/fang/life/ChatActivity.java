@@ -18,14 +18,15 @@ import android.widget.TextView;
 import com.fang.base.WEActivity;
 import com.fang.callsms.R;
 import com.fang.common.util.BaseUtil;
+import com.fang.common.util.NetWorkUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.common.util.ViewUtil;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
-import com.fang.net.ServerUtil;
+import com.fang.common.util.LogOperate;
+import com.fang.common.util.ServerUtil;
 import com.fang.span.MySpan;
 import com.fang.util.MessageWhat;
-import com.fang.util.NetWorkUtil;
+import com.fang.util.RequestUtil;
 
 /**
  * 聊天窗口
@@ -121,7 +122,7 @@ public class ChatActivity extends WEActivity {
         BaseUtil.excute(new Runnable() {
             @Override
             public void run() {
-                String answer = NetWorkUtil.getInstance().chat(content,
+                String answer = RequestUtil.getInstance().chat(content,
                         ServerUtil.getInstance(mContext).getUserID());
                 if (!StringUtil.isEmpty(answer)) {
                     mHandler.sendMessage(mHandler.obtainMessage(MessageWhat.NET_REQUEST_CHAT, answer));

@@ -18,11 +18,11 @@ import com.fang.callsms.R;
 import com.fang.comment.CommentActivity;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.LogOperate;
 import com.fang.common.util.StringUtil;
 import com.fang.database.NumberDatabaseManager;
 import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
 
 import java.util.List;
 import java.util.Map;

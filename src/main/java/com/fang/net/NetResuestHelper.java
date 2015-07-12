@@ -35,8 +35,6 @@ public class NetResuestHelper {
     public static final String OFFLINE_NUMBER = "offline_number";
     /** url */
     public static final String url = "url";
-    /** request error */
-    public static final String REQUEST_ERROR = "request_error";
 	
 	private static int code = 0;
 	public static synchronized int getRequestCode() {

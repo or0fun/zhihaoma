@@ -96,25 +96,6 @@ public class Util {
 	}
 
 	/**
-	 * 获取版本名字
-	 * 
-	 * @return
-	 * @throws Exception
-	 */
-	public static String getVersionName(Context context) {
-		String version = "1.0";
-		PackageManager packageManager = context.getPackageManager();
-		PackageInfo packInfo;
-		try {
-			packInfo = packageManager.getPackageInfo(context.getPackageName(),
-					0);
-			version = packInfo.versionName;
-		} catch (NameNotFoundException e) {
-		}
-		return version;
-	}
-
-	/**
 	 * 获取版本号
 	 * 
 	 * @return

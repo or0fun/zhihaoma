@@ -15,7 +15,7 @@ import com.fang.common.controls.CustomEditText;
 import com.fang.common.util.Patterns;
 import com.fang.contact.ContactHelper;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.util.SharedPreferencesHelper;
 import com.fang.util.Util;
 

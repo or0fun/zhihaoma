@@ -20,18 +20,18 @@ import com.fang.callsms.R;
 import com.fang.common.CustomConstant;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.LogOperate;
 import com.fang.common.util.MapUtil;
 import com.fang.common.util.Patterns;
+import com.fang.common.util.ServerUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.datatype.ExtraName;
 import com.fang.express.ExpressListActivity;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
 import com.fang.map.BDMapListener;
-import com.fang.net.ServerUtil;
 import com.fang.span.MySpan;
 import com.fang.util.MessageWhat;
-import com.fang.util.NetWorkUtil;
+import com.fang.util.RequestUtil;
 import com.fang.util.SharedPreferencesHelper;
 import com.fang.util.Util;
 import com.fang.weather.WeatherHelper;
@@ -231,7 +231,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
             @Override
             public void run() {
                 // 最多7天
-                String weather = NetWorkUtil.getInstance().searchWeather(7,
+                String weather = RequestUtil.getInstance().searchWeather(7,
                         BDMapListener.getInstance().getBdLocation().getCity(),
                         ServerUtil.getInstance(mContext).getUserID());
                 if (!StringUtil.isEmpty(weather)) {
@@ -239,7 +239,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
                     myHandler.sendMessage(myHandler.obtainMessage(MessageWhat.NET_REQUEST_WEATHER, weather));
                 }
                 //获取空气质量
-                String air = NetWorkUtil.getInstance().searchAir(
+                String air = RequestUtil.getInstance().searchAir(
                         BDMapListener.getInstance().getBdLocation().getCity());
                 if (!StringUtil.isEmpty(air)) {
                     myHandler.sendMessage(myHandler.obtainMessage(MessageWhat.NET_REQUEST_AIR, air));
@@ -260,7 +260,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
         BaseUtil.excute(new Runnable() {
             @Override
             public void run() {
-                String nongli = NetWorkUtil.getInstance().searchNongli();
+                String nongli = RequestUtil.getInstance().searchNongli();
                 if (!StringUtil.isEmpty(nongli)) {
                     mLastNongliUpdateTime = System.currentTimeMillis();
                     myHandler.sendMessage(myHandler.obtainMessage(MessageWhat.NET_REQUEST_NONGLI, nongli));

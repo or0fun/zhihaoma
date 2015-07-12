@@ -25,12 +25,12 @@ import com.fang.base.WEActivity;
 import com.fang.callsms.R;
 import com.fang.common.controls.CustomWebView;
 import com.fang.common.util.BaseUtil;
+import com.fang.common.util.LogOperate;
+import com.fang.common.util.ServerUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
 import com.fang.net.NetResuestHelper;
-import com.fang.net.ServerUtil;
 import com.fang.weixin.WXConstants;
 import com.fang.widget.SearchView;
 

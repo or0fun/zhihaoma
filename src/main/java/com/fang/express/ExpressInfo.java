@@ -1,6 +1,6 @@
 package com.fang.express;
 
-import com.fang.net.ResponseInfo;
+import com.fang.common.net.ResponseInfo;
 
 /**
  * 快递信息
@@ -8,11 +8,6 @@ import com.fang.net.ResponseInfo;
  *
  */
 public class ExpressInfo extends ResponseInfo {
-
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 8988994631433972109L;
 
 	private String company;
 	 

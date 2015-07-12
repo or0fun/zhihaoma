@@ -24,10 +24,6 @@ public class SharedPreferencesHelper extends AbsSharedPre {
 	public static final String TIMING_SMS_INFO = "TIMING_SMS_INFO";
     /** 最后启动的时间 */
 	public static final String LAUNCH_LAST_TIME = "LAUNCH_LAST_TIME";
-    /** 用户ID */
-	public static final String USER_ID = "USER_ID";
-	/** 未上传成功的数据 */
-	public static final String OFFLINE_DATA = "OfflineData";
 	/** 快递列表 */
 	public static final String EXPRESS_LIST = "EXPRESS_LIST";
 	/** 最近一次查询快递的时间 */

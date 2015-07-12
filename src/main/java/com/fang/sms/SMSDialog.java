@@ -26,7 +26,7 @@ import com.fang.common.util.BaseUtil;
 import com.fang.contact.ContactHelper;
 import com.fang.listener.IDeleteConfirmListener;
 import com.fang.logs.LogCode;
-import com.fang.logs.LogOperate;
+import com.fang.common.util.LogOperate;
 import com.fang.span.MySpan;
 import com.fang.speach.SpeachHelper;
 import com.fang.util.MessageWhat;
