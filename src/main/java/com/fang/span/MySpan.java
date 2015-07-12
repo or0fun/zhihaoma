@@ -79,6 +79,7 @@ public class MySpan extends ClickableSpan {
             if (null == mDialog) {
                 mDialog = new CustomDialog.Builder(mContext).setContentView(view)
                         .setHeight(WindowManager.LayoutParams.MATCH_PARENT)
+                        .setWidth(WindowManager.LayoutParams.MATCH_PARENT)
                         .create();
                 mDialog.setCanceledOnTouchOutside(true);
             }

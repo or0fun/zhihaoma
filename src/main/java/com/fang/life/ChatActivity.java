@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
-import android.text.Html;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
@@ -24,6 +23,7 @@ import com.fang.common.util.ViewUtil;
 import com.fang.logs.LogCode;
 import com.fang.logs.LogOperate;
 import com.fang.net.ServerUtil;
+import com.fang.span.MySpan;
 import com.fang.util.MessageWhat;
 import com.fang.util.NetWorkUtil;
 
@@ -106,21 +106,21 @@ public class ChatActivity extends WEActivity {
     }
 
     public void send() {
-        addView(createView(mContext, mEdit.getText().toString(), true), mToLP);
+        final String content = mEdit.getText().toString().trim();
+        if (content.length() == 0) {
+            showTip("聊几句呗，内容不要为空哦");
+            return;
+        }
+        if (!NetWorkUtil.isNetworkConnected(mContext)) {
+            showTip("网络未连接哦");
+            return;
+        }
 
-        final String content = mEdit.getText().toString();
+        addView(createView(mContext, mEdit.getText().toString(), true), mToLP);
         mEdit.setText("");
         BaseUtil.excute(new Runnable() {
             @Override
             public void run() {
-                if (!NetWorkUtil.isNetworkConnected(mContext)) {
-                    showTip("网络未连接哦");
-                    return;
-                }
-                if (content.length() == 0) {
-                    showTip("聊几句呗，内容不要为空哦");
-                    return;
-                }
                 String answer = NetWorkUtil.getInstance().chat(content,
                         ServerUtil.getInstance(mContext).getUserID());
                 if (!StringUtil.isEmpty(answer)) {
@@ -140,16 +140,16 @@ public class ChatActivity extends WEActivity {
         TextView tv = new TextView(context);
         ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         tv.setLayoutParams(lp);
-        tv.setText(Html.fromHtml(content));
         tv.setSingleLine(false);
         tv.setTextColor(mContext.getResources().getColor(R.color.black));
         tv.setGravity(Gravity.LEFT|Gravity.CENTER_VERTICAL);
-        tv.setSelected(true);
+        tv.setTextIsSelectable(true);
         if (isSend) {
             tv.setBackgroundResource(R.drawable.chatto_bg_normal);
         } else {
             tv.setBackgroundResource(R.drawable.chatfrom_bg_normal);
         }
+        MySpan.formatTextView(context, tv, content, false);
         return tv;
     }
 }

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiManager;
+import android.text.TextUtils;
 
 import com.fang.base.RequestUrl;
 import com.fang.common.util.DebugLog;
@@ -146,9 +147,8 @@ public class NetWorkUtil {
 		}
 		str = str.replace(" ", "");
 		str = str.replace("-", "");
-		str = mAesUtil.encrypt(str);
-		String url = RequestUrl.API_URL + "?t=phone&w=" + str + "&u=" + uid+ "&e=1";
-		String infoString = getHttpRequest(url);
+
+        String infoString = requestAPI("phone", str, uid);
 		if (StringUtil.isEmpty(infoString)) {
 			return "";
 		}
@@ -166,9 +166,7 @@ public class NetWorkUtil {
 			return "";
 		}
 		String str = company + number;
-		str = mAesUtil.encrypt(str);
-		String url = RequestUrl.API_URL + "?t=express&w=" + str + "&u=" + uid+ "&e=1";
-		String infoString = getHttpRequest(url);
+        String infoString = requestAPI("express", str, uid);
 		if (StringUtil.isEmpty(infoString)) {
 			return "";
 		}
@@ -182,10 +180,7 @@ public class NetWorkUtil {
 		if (StringUtil.isEmpty(city)) {
 			return "";
 		}
-		String str = city;
-		str = mAesUtil.encrypt(str);
-		String url = RequestUrl.API_URL + "?t=weather&w=" + str + "&u=" + uid+ "&e=1";
-		String infoString = getHttpRequest(url);
+        String infoString = requestAPI("weather", city, uid);
 		if (StringUtil.isEmpty(infoString)) {
 			return "";
 		}
@@ -199,10 +194,7 @@ public class NetWorkUtil {
         if (StringUtil.isEmpty(city)) {
             return "";
         }
-        String str = city;
-        str = mAesUtil.encrypt(str);
-        String url = RequestUrl.API_URL + "?t=weather&w=" + str + "&u=" + uid+ "&e=1&d=" + days;
-        String infoString = getHttpRequest(url);
+        String infoString = requestAPI("weather", city, uid, "&d=" + days);
         if (StringUtil.isEmpty(infoString)) {
             return "";
         }
@@ -214,8 +206,7 @@ public class NetWorkUtil {
      */
     public String searchNongli() {
 
-        String url = RequestUrl.API_URL + "?t=nongli&w=&u=&e=1";
-        String infoString = getHttpRequest(url);
+        String infoString = requestAPI("nongli", "", "");
         if (StringUtil.isEmpty(infoString)) {
             return "";
         }
@@ -234,10 +225,7 @@ public class NetWorkUtil {
         if (StringUtil.isEmpty(city)) {
             return "";
         }
-        String str = city;
-        str = mAesUtil.encrypt(str);
-        String url = RequestUrl.API_URL + "?t=air&w=" + str + "&e=1";
-        String infoString = getHttpRequest(url);
+        String infoString = requestAPI("air", city, "");
         if (StringUtil.isEmpty(infoString)) {
             return "";
         }
@@ -253,13 +241,24 @@ public class NetWorkUtil {
         if (StringUtil.isEmpty(content)) {
             return "";
         }
-        String str = mAesUtil.encrypt(content);
-        String url = RequestUrl.API_URL + "?t=chat&w=" + str + "u=" + uid + "&e=1";
-        String infoString = getHttpRequest(url);
+        String infoString = requestAPI("chat", content, uid);
         if (StringUtil.isEmpty(infoString)) {
             return "";
         }
         return infoString.trim();
+    }
+
+    private String requestAPI(String t, String w, String uid) {
+        return requestAPI(t, w, uid, null);
+    }
+
+    private String requestAPI(String t, String w, String uid, String otherParam) {
+        String str = mAesUtil.encrypt(w);
+        String url = RequestUrl.API_URL + "?t=" + t + "&w=" + str + "&u=" + uid + "&e=1";
+        if (!TextUtils.isEmpty(otherParam)) {
+            url += otherParam;
+        }
+        return getHttpRequest(url);
     }
 
 	/**
