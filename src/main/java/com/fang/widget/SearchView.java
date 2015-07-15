@@ -99,7 +99,7 @@ public class SearchView implements View.OnClickListener {
         mCallRecordDialog.show();
 
         //日志
-        LogOperate.updateLog(mContext, LogCode.SEARCH_NUMBER);
+        LogOperate.updateLog(mContext, LogCode.SEARCH_BTN);
     }
 
     public EditText getSearchEditView() {

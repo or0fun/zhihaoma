@@ -30,8 +30,8 @@ public class LogCode {
 	public final static String CALL_COMMON_NUMBER = "10013";
 	/** 通知栏通知快递追踪变化 */
 	public final static String NOTIFY_EXPRESS_CHANGED = "10014";
-	/** 搜索号码 */
-	public final static String SEARCH_NUMBER = "10015";
+	/** 搜索按钮 */
+	public final static String SEARCH_BTN = "10015";
 	/** 开启应用 */
 	public final static String ACTIVE_APP = "10016";
 	/** 提交吐槽 */
