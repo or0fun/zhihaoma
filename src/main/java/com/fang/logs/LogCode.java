@@ -56,4 +56,6 @@ public class LogCode {
     public final static String HISTORY_OF_TODAY = "10026";
     /** 聊天 */
     public final static String CHAT = "10027";
+    /** 短信弹窗内容点击 */
+    public final static String MYSPAN_CLICK = "10028";
 }

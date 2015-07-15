@@ -17,7 +17,9 @@ import com.fang.callsms.R;
 import com.fang.common.controls.CustomDialog;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
+import com.fang.common.util.LogOperate;
 import com.fang.common.util.Patterns;
+import com.fang.logs.LogCode;
 
 public class MySpan extends ClickableSpan {
 
@@ -54,6 +56,7 @@ public class MySpan extends ClickableSpan {
                 mWindowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             }
         }
+        LogOperate.updateLog(mContext, LogCode.MYSPAN_CLICK);
 	}
 
     public void cancel(View view) {
