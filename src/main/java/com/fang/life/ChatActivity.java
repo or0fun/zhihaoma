@@ -104,6 +104,8 @@ public class ChatActivity extends WEActivity {
         mFromLP.rightMargin = (int) mContext.getResources().getDimension(R.dimen.xmargin);
         mToLP.gravity = Gravity.RIGHT;
 
+        //欢迎语
+        addView(createView(mContext, mContext.getString(R.string.chat_welcome), false), mFromLP);
     }
 
     public void send() {
