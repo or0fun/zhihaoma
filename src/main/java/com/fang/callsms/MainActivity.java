@@ -30,6 +30,7 @@ import com.fang.common.base.Global;
 import com.fang.common.util.DebugLog;
 import com.fang.common.util.LogOperate;
 import com.fang.common.util.MIUIHelper;
+import com.fang.common.util.NetWorkUtil;
 import com.fang.contact.ContactFragment;
 import com.fang.contact.ContactHelper;
 import com.fang.datatype.CallFrom;
@@ -405,6 +406,12 @@ public class MainActivity extends WEActivity implements OnClickListener {
 	 * 更新版本
 	 */
 	public void checkUpdateVersion(boolean manual) {
+        if (!manual) {
+            //自动更新只在wifi下提示
+            if (!NetWorkUtil.isWifiConnected(mContext)) {
+                return;
+            }
+        }
 		long now = new Date().getTime();
 		long last = SharedPreferencesHelper.getInstance().getLong(
                 SharedPreferencesHelper.LAUNCH_LAST_TIME, 0);
