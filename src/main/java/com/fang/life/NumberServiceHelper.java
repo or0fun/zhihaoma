@@ -1,13 +1,13 @@
 package com.fang.life;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.fang.common.base.Global;
 import com.fang.common.net.NetRequestListener;
 import com.fang.common.net.NetRequestResult;
 import com.fang.common.net.NetRequestResultCode;
 import com.fang.common.util.BaseUtil;
+import com.fang.common.util.DebugLog;
 import com.fang.common.util.ServerUtil;
 import com.fang.common.util.StringUtil;
 import com.fang.database.NumberDatabaseManager;
@@ -160,9 +160,9 @@ public class NumberServiceHelper {
 
                     }
                 } catch (JSONException e) {
-                    Log.e(TAG, "Error parsing data " + e.toString());
+                    DebugLog.e(TAG, "Error parsing data " + e.toString());
                 } catch (Exception e) {
-                    Log.e(TAG, "Error parsing data " + e.toString());
+                    DebugLog.e(TAG, "Error parsing data " + e.toString());
                 } finally {
                     SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.OFFLINE_NUMBER_STARTID, startID);
                 }

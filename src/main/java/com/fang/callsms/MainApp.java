@@ -82,6 +82,7 @@ public class MainApp extends Application implements Thread.UncaughtExceptionHand
         AlarmManager mgr = (AlarmManager)Global.application.getSystemService(Context.ALARM_SERVICE);
         mgr.set(AlarmManager.RTC, System.currentTimeMillis() + 100,
                 restartIntent); // 1秒钟后重启应用
+
         finishActivity();
     }
 
