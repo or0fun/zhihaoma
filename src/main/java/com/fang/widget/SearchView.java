@@ -16,7 +16,7 @@ import com.fang.common.util.Patterns;
 import com.fang.contact.ContactHelper;
 import com.fang.logs.LogCode;
 import com.fang.common.util.LogOperate;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.fang.util.Util;
 
 /**
@@ -95,7 +95,7 @@ public class SearchView implements View.OnClickListener {
             }
         }
 
-        SharedPreferencesHelper.getInstance().setString(SharedPreferencesHelper.NUMBER_SEARCH, str);
+        SharedPreferencesUtil.getInstance().setString(SharedPreferencesUtil.NUMBER_SEARCH, str);
         mCallRecordDialog.show();
 
         //日志

@@ -42,7 +42,7 @@ import com.fang.push.ActionType;
 import com.fang.receiver.MainService;
 import com.fang.receiver.PhoneReceiver;
 import com.fang.setting.SettingFragment;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.fang.util.Util;
 import com.fang.version.UpdateVersion;
 import com.fang.zxing.activity.CaptureActivity;
@@ -203,24 +203,24 @@ public class MainActivity extends WEActivity implements OnClickListener {
 //		mShowHotAppButton.setOnClickListener(this);
 //		mShowHotAppButton.setVisibility(View.GONE);
 		//默认选择号码通
-		int selected = SharedPreferencesHelper.getInstance().getInt(SharedPreferencesHelper.SELECTED_PAGE, Model.NUMBER_FRAGMENT);
+		int selected = SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.SELECTED_PAGE, Model.NUMBER_FRAGMENT);
 		mViewPager.setCurrentItem(selected);
 		pageSelected(selected);
 
 		//创建快捷方式
-		if (SharedPreferencesHelper.getInstance().getBoolean(SharedPreferencesHelper.FIRST_TIME_OPEN, true)) {
+		if (SharedPreferencesUtil.getInstance().getBoolean(SharedPreferencesUtil.FIRST_TIME_OPEN, true)) {
 			if (MIUIHelper.getInstance().isMiUIV5() || MIUIHelper.getInstance().isMiUIV6()) {
 				mHandler.sendEmptyMessageDelayed(MSG_SHOW_FLOAT, CustomConstant.FIVE_SECONDS);
 			}else {
 				mHandler.sendEmptyMessageDelayed(MSG_CREATE_SHORT, CustomConstant.FIVE_SECONDS);
 			}
-			SharedPreferencesHelper.getInstance().setBoolean(SharedPreferencesHelper.FIRST_TIME_OPEN, false);
+			SharedPreferencesUtil.getInstance().setBoolean(SharedPreferencesUtil.FIRST_TIME_OPEN, false);
 		}
 
         //扫一扫快捷方式
-        if (SharedPreferencesHelper.getInstance().getBoolean(SharedPreferencesHelper.SCAN, true)) {
+        if (SharedPreferencesUtil.getInstance().getBoolean(SharedPreferencesUtil.SCAN, true)) {
             mHandler.sendEmptyMessageDelayed(MSG_CREATE_SHORT_SCAN, CustomConstant.FIVE_SECONDS);
-            SharedPreferencesHelper.getInstance().setBoolean(SharedPreferencesHelper.SCAN, false);
+            SharedPreferencesUtil.getInstance().setBoolean(SharedPreferencesUtil.SCAN, false);
         }
 
         //  处理消息
@@ -392,7 +392,7 @@ public class MainActivity extends WEActivity implements OnClickListener {
 			mShowingFragment = mSettingFragment;
 		}
 		
-		SharedPreferencesHelper.getInstance().setInt(SharedPreferencesHelper.SELECTED_PAGE, index);
+		SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.SELECTED_PAGE, index);
 		mShowingFragment.setSelected(true);
 		mTextViewList.get(index).setTextColor(mContext.getResources().getColor(
 				R.color.focus));
@@ -413,17 +413,17 @@ public class MainActivity extends WEActivity implements OnClickListener {
             }
         }
 		long now = new Date().getTime();
-		long last = SharedPreferencesHelper.getInstance().getLong(
-                SharedPreferencesHelper.LAUNCH_LAST_TIME, 0);
+		long last = SharedPreferencesUtil.getInstance().getLong(
+                SharedPreferencesUtil.LAUNCH_LAST_TIME, 0);
 		if (manual || now - last > CustomConstant.ONE_DAY ||
-                SharedPreferencesHelper.getInstance().getBoolean(SharedPreferencesHelper.UPDATE_VERSION, false)) {
+                SharedPreferencesUtil.getInstance().getBoolean(SharedPreferencesUtil.UPDATE_VERSION, false)) {
 			UpdateVersion.checkVersion(mContext, manual, mDownloadListener);
 
             //保持时间
-            SharedPreferencesHelper.getInstance().setLong(
-                    SharedPreferencesHelper.LAUNCH_LAST_TIME, new Date().getTime());
+            SharedPreferencesUtil.getInstance().setLong(
+                    SharedPreferencesUtil.LAUNCH_LAST_TIME, new Date().getTime());
 
-            SharedPreferencesHelper.getInstance().setBoolean(SharedPreferencesHelper.UPDATE_VERSION, false);
+            SharedPreferencesUtil.getInstance().setBoolean(SharedPreferencesUtil.UPDATE_VERSION, false);
 
             //日志
             LogOperate.updateLog(mContext, LogCode.ACTIVE_APP);

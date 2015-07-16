@@ -17,7 +17,7 @@ import com.fang.common.util.MapUtil;
 import com.fang.common.util.ServerUtil;
 import com.fang.map.BDMapListener;
 import com.fang.receiver.MainService;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.fang.weixin.WXCommon;
 
 import java.util.concurrent.Executors;
@@ -47,8 +47,8 @@ public class MainApp extends Application implements Thread.UncaughtExceptionHand
         Global.fixedThreadPool = Executors.newFixedThreadPool(CustomConstant.MAX_THREAD_COUNT);
 
         WXCommon.init(this);
-        com.fang.util.SharedPreferencesHelper.getInstance().init(this);
-        com.fang.util.SharedPreferencesHelper.getInstance().init(this);
+        SharedPreferencesUtil.getInstance().init(this);
+        SharedPreferencesUtil.getInstance().init(this);
 
         MapUtil.init(getApplicationContext(), BDMapListener.getInstance());
 
@@ -72,7 +72,7 @@ public class MainApp extends Application implements Thread.UncaughtExceptionHand
     public void uncaughtException(Thread thread, Throwable ex) {
         BaseUtil.addCrashException(ex);
 
-        SharedPreferencesHelper.getInstance().setBoolean(SharedPreferencesHelper.UPDATE_VERSION, true);
+        SharedPreferencesUtil.getInstance().setBoolean(SharedPreferencesUtil.UPDATE_VERSION, true);
 
         Intent intent = new Intent(getApplicationContext(), MainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

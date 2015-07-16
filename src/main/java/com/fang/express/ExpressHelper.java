@@ -12,8 +12,7 @@ import com.fang.common.util.LogOperate;
 import com.fang.common.util.NetWorkUtil;
 import com.fang.logs.LogCode;
 import com.fang.util.NotificationHelper;
-import com.fang.util.RequestUtil;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.util.List;
 
@@ -41,8 +40,8 @@ public class ExpressHelper {
 	 * @return
 	 */
 	public static List<ExpressInfo> getExpressInfos(Context context) {
-		return (List<ExpressInfo>) SharedPreferencesHelper.getInstance().getObject(
-                SharedPreferencesHelper.EXPRESS_LIST);
+		return (List<ExpressInfo>) SharedPreferencesUtil.getInstance().getObject(
+                SharedPreferencesUtil.EXPRESS_LIST);
 	}
 
 	/**
@@ -52,8 +51,8 @@ public class ExpressHelper {
 	 */
 	public static void saveExpressInfos(Context context,
 			List<ExpressInfo> infoList) {
-		SharedPreferencesHelper.getInstance().setObject(
-                SharedPreferencesHelper.EXPRESS_LIST, infoList);
+		SharedPreferencesUtil.getInstance().setObject(
+                SharedPreferencesUtil.EXPRESS_LIST, infoList);
 	}
 
 	/**
@@ -81,9 +80,9 @@ public class ExpressHelper {
                                         ExpressInfo responseInfo = (ExpressInfo) info;
                                         if (expressInfo.isChanged()) {
 
-                                            if (SharedPreferencesHelper.getInstance()
+                                            if (SharedPreferencesUtil.getInstance()
                                                     .getBoolean(
-                                                            SharedPreferencesHelper.SETTING_EXPRESS_TRACK,
+                                                            SharedPreferencesUtil.SETTING_EXPRESS_TRACK,
                                                             true)) {
 
                                                 expressInfo.setChanged(false);

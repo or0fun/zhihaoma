@@ -17,7 +17,7 @@ import com.fang.listener.IPhoneStateListener;
 import com.fang.logs.LogCode;
 import com.fang.common.util.LogOperate;
 import com.fang.common.util.DebugLog;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -63,8 +63,8 @@ public class PhoneReceiver extends BroadcastReceiver {
 		public void handleMessage(Message msg) {
 			switch (msg.what) {
 			case INCOMING_CALL_MSG:
-				if (SharedPreferencesHelper.getInstance().getBoolean(
-                        SharedPreferencesHelper.SETTING_NEW_CALL_POPUP, true)) {
+				if (SharedPreferencesUtil.getInstance().getBoolean(
+                        SharedPreferencesUtil.SETTING_NEW_CALL_POPUP, true)) {
 					if (null != mCallDialog) {
 						mCallDialog.remove();
 						mCallDialog = null;
@@ -77,8 +77,8 @@ public class PhoneReceiver extends BroadcastReceiver {
 				}
 				break;
 			case OUTGOING_CALL_MSG:
-				if (SharedPreferencesHelper.getInstance().getBoolean(
-						SharedPreferencesHelper.SETTING_OUTGOING_CALL_POPUP,
+				if (SharedPreferencesUtil.getInstance().getBoolean(
+						SharedPreferencesUtil.SETTING_OUTGOING_CALL_POPUP,
 						true)) {
 					if (null != mCallDialog) {
 						mCallDialog.remove();
@@ -103,9 +103,9 @@ public class PhoneReceiver extends BroadcastReceiver {
 				}
 				break;
 			case MISSED_CALL_SHOW_MSG:
-				if (SharedPreferencesHelper.getInstance()
+				if (SharedPreferencesUtil.getInstance()
 						.getBoolean(
-								SharedPreferencesHelper.SETTING_MISSED_CALL_POPUP,
+								SharedPreferencesUtil.SETTING_MISSED_CALL_POPUP,
 								true)) {
 					if (null != mMissedCallDialog) {
 						mMissedCallDialog.remove();

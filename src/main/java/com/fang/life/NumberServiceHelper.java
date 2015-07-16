@@ -13,7 +13,7 @@ import com.fang.common.util.StringUtil;
 import com.fang.database.NumberDatabaseManager;
 import com.fang.datatype.ExtraName;
 import com.fang.net.NetResuestHelper;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -111,7 +111,7 @@ public class NumberServiceHelper {
      * @param context
      */
     public static void getNumberInfo(final Context context) {
-        int startID = SharedPreferencesHelper.getInstance().getInt(SharedPreferencesHelper.OFFLINE_NUMBER_STARTID, 0);
+        int startID = SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.OFFLINE_NUMBER_STARTID, 0);
         getNumberInfo(context, startID);
     }
     /**
@@ -141,7 +141,7 @@ public class NumberServiceHelper {
             if (result.getResultCode() == NetRequestResultCode.HTTP_OK) {
 
                 JSONArray infos;
-                int startID = SharedPreferencesHelper.getInstance().getInt(SharedPreferencesHelper.OFFLINE_NUMBER_STARTID, 0);
+                int startID = SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.OFFLINE_NUMBER_STARTID, 0);
                 try {
                     infos = new JSONArray(result.getValue());
                     if (null != infos) {
@@ -164,7 +164,7 @@ public class NumberServiceHelper {
                 } catch (Exception e) {
                     Log.e(TAG, "Error parsing data " + e.toString());
                 } finally {
-                    SharedPreferencesHelper.getInstance().setInt(SharedPreferencesHelper.OFFLINE_NUMBER_STARTID, startID);
+                    SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.OFFLINE_NUMBER_STARTID, startID);
                 }
             }
         }

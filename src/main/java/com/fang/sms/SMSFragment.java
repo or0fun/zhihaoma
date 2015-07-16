@@ -26,7 +26,7 @@ import com.fang.datatype.ExtraName;
 import com.fang.logs.LogCode;
 import com.fang.common.util.LogOperate;
 import com.fang.receiver.AlarmReceiver;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -256,8 +256,8 @@ public class SMSFragment extends BaseFragment implements Runnable,
 							code, mSendCalendar.getTimeInMillis());
 
 					mSendSMSInfoList.add(info);
-					SharedPreferencesHelper.getInstance().setObject(
-                            SharedPreferencesHelper.TIMING_SMS_INFO,
+					SharedPreferencesUtil.getInstance().setObject(
+                            SharedPreferencesUtil.TIMING_SMS_INFO,
                             mSendSMSInfoList);
 					
 					Intent intent = new Intent(mContext, AlarmReceiver.class);

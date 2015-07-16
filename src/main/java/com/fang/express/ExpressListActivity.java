@@ -24,7 +24,7 @@ import com.fang.common.util.LogOperate;
 import com.fang.common.util.NetWorkUtil;
 import com.fang.logs.LogCode;
 import com.fang.util.MessageWhat;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,14 +77,14 @@ public class ExpressListActivity extends WEActivity {
 		mAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 		mSpinner.setAdapter(mAdapter);
 		mSpinner.setSelection(
-                SharedPreferencesHelper.getInstance().getInt(
-                        SharedPreferencesHelper.SELECTED_EXPRESS_COMPANY, 0));
+                SharedPreferencesUtil.getInstance().getInt(
+                        SharedPreferencesUtil.SELECTED_EXPRESS_COMPANY, 0));
 		mSpinner.setOnItemSelectedListener(new OnItemSelectedListener() {
 			@Override
 			public void onItemSelected(AdapterView<?> arg0, View arg1,
 					int position, long arg3) {
-				SharedPreferencesHelper.getInstance().setInt(
-                        SharedPreferencesHelper.SELECTED_EXPRESS_COMPANY,
+				SharedPreferencesUtil.getInstance().setInt(
+                        SharedPreferencesUtil.SELECTED_EXPRESS_COMPANY,
                         position);
 			}
 
@@ -159,8 +159,8 @@ public class ExpressListActivity extends WEActivity {
 		for (ExpressInfo info : mExpressList) {
 			BusinessHelper.getExpressInfo(mContext, info, myHandler);
 		}
-		SharedPreferencesHelper.getInstance().setLong(
-                SharedPreferencesHelper.LAST_UPDATE_EXPRESS_LIST,
+		SharedPreferencesUtil.getInstance().setLong(
+                SharedPreferencesUtil.LAST_UPDATE_EXPRESS_LIST,
                 System.currentTimeMillis());
 	}
 

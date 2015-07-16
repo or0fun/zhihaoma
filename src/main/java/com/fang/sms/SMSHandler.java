@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.fang.callsms.MySMSMessage;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 public class SMSHandler extends Handler{
 
@@ -31,8 +31,8 @@ public class SMSHandler extends Handler{
 		super.handleMessage(msg);
 		switch (msg.what) {
 		case SHOW_MSG:
-			if (SharedPreferencesHelper.getInstance().getBoolean(
-					SharedPreferencesHelper.SETTING_SMS_POPUP, true)) {
+			if (SharedPreferencesUtil.getInstance().getBoolean(
+					SharedPreferencesUtil.SETTING_SMS_POPUP, true)) {
 				new SMSDialog(mContext, (MySMSMessage) msg.obj).show();
 			}
 			break;

@@ -32,7 +32,7 @@ import com.fang.map.BDMapListener;
 import com.fang.span.MySpan;
 import com.fang.util.MessageWhat;
 import com.fang.util.RequestUtil;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.fang.util.Util;
 import com.fang.weather.WeatherHelper;
 import com.fang.widget.SearchView;
@@ -153,9 +153,9 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
         rootView.findViewById(R.id.mylove).setOnClickListener(this);
 
         // 显示农历和天气
-        handlerNongli(SharedPreferencesHelper.getInstance().getString(SharedPreferencesHelper.NONGLI));
-        handlerWeather(SharedPreferencesHelper.getInstance().getString(SharedPreferencesHelper.WEATHER));
-        handlerAir(SharedPreferencesHelper.getInstance().getString(SharedPreferencesHelper.AIR));
+        handlerNongli(SharedPreferencesUtil.getInstance().getString(SharedPreferencesUtil.NONGLI));
+        handlerWeather(SharedPreferencesUtil.getInstance().getString(SharedPreferencesUtil.WEATHER));
+        handlerAir(SharedPreferencesUtil.getInstance().getString(SharedPreferencesUtil.AIR));
 
         return rootView;
 	}
@@ -216,7 +216,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
 	}
 
     private void searchWeather() {
-        if (SharedPreferencesHelper.getInstance().getString(SharedPreferencesHelper.WEATHER, "").length() > 0) {
+        if (SharedPreferencesUtil.getInstance().getString(SharedPreferencesUtil.WEATHER, "").length() > 0) {
             if (System.currentTimeMillis() - mLastWeatherUpdateTime < CustomConstant.ONE_HOUR) {
                 DebugLog.d(TAG, "searchWeather: the time is too short");
                 return;
@@ -275,7 +275,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
      */
     private void handlerWeather(String weather) {
         if(!StringUtil.isEmpty(weather)) {
-            SharedPreferencesHelper.getInstance().setString(SharedPreferencesHelper.WEATHER, weather);
+            SharedPreferencesUtil.getInstance().setString(SharedPreferencesUtil.WEATHER, weather);
             int index = weather.indexOf(" ");
             if (index > 0) {
                 String city = weather.substring(0, index);
@@ -297,7 +297,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
      */
     private void handlerAir(String air) {
         if(!StringUtil.isEmpty(air)) {
-            SharedPreferencesHelper.getInstance().setString(SharedPreferencesHelper.AIR, air);
+            SharedPreferencesUtil.getInstance().setString(SharedPreferencesUtil.AIR, air);
             mWeatherCity.setText(air);
         }
     }
@@ -314,7 +314,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
                 today.append(nongli.replace("\n", "<br/>"));
                 mToday.setText(Html.fromHtml(today.toString()));
 
-                SharedPreferencesHelper.getInstance().setString(SharedPreferencesHelper.NONGLI, nongli);
+                SharedPreferencesUtil.getInstance().setString(SharedPreferencesUtil.NONGLI, nongli);
             }
         }
     }

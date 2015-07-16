@@ -4,7 +4,7 @@ import android.content.Context;
 
 import com.fang.common.util.AbsSharedPre;
 
-public class SharedPreferencesHelper extends AbsSharedPre {
+public class SharedPreferencesUtil extends AbsSharedPre {
 
     private final static String PREFS_FILE_NAME = "com.fang.callsms";
 
@@ -52,6 +52,10 @@ public class SharedPreferencesHelper extends AbsSharedPre {
 
     //离线数据startID
     public static final String OFFLINE_NUMBER_STARTID = "OFFLINE_NUMBER_STARTID";
+
+    //CALLING_DIALOG 位置
+    public static final String CALLING_DIALOG_X = "CALLING_DIALOG_X";
+    public static final String CALLING_DIALOG_Y = "CALLING_DIALOG_Y";
 
     @Override
     public void init(Context context) {

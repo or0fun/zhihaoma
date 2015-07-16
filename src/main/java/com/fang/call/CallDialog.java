@@ -32,7 +32,7 @@ import com.fang.logs.LogCode;
 import com.fang.receiver.PhoneReceiver;
 import com.fang.speach.SpeachHelper;
 import com.fang.util.MessageWhat;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
@@ -116,9 +116,9 @@ public class CallDialog implements OnClickListener {
 				if (mType == PhoneReceiver.INCOMING_CALL_MSG) {
 					// 来电播报
 					if (BaseUtil.isWiredHeadsetOn(mContext)) {
-						if (SharedPreferencesHelper.getInstance()
+						if (SharedPreferencesUtil.getInstance()
 								.getBoolean(
-										SharedPreferencesHelper.SETTING_BROADCAST_WHEN_WIREDHEADSETON,
+										SharedPreferencesUtil.SETTING_BROADCAST_WHEN_WIREDHEADSETON,
 										true)) {
 							broadcastContent(createCallBroadcastContent());
 							// 日志
@@ -282,8 +282,8 @@ public class CallDialog implements OnClickListener {
 			mLayoutParams = new WindowManager.LayoutParams();
 			mLayoutParams.type = LayoutParams.TYPE_SYSTEM_ERROR;
 			mLayoutParams.gravity = Gravity.LEFT | Gravity.TOP;
-			mLayoutParams.x = 0;
-			mLayoutParams.y = 0;
+			mLayoutParams.x = SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.CALLING_DIALOG_X, 0);
+			mLayoutParams.y = SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.CALLING_DIALOG_Y, 0);
 			mLayoutParams.format = PixelFormat.RGBA_8888;
 			mLayoutParams.width = WindowManager.LayoutParams.FILL_PARENT;
 			mLayoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT;
@@ -405,7 +405,8 @@ public class CallDialog implements OnClickListener {
 		mLayoutParams.x = (int) (mRawX - mTouchStartX);
 		mLayoutParams.y = (int) (mRawY - mTouchStartY);
 		mWindowManager.updateViewLayout(mView, mLayoutParams);
-
+        SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.CALLING_DIALOG_X, mLayoutParams.x);
+        SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.CALLING_DIALOG_Y, mLayoutParams.y);
 	}
 
 	/**

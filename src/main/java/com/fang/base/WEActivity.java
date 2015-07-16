@@ -6,7 +6,7 @@ import android.widget.Toast;
 
 import com.fang.callsms.R;
 import com.fang.common.CustomConstant;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.fang.weixin.WXEntryActivity;
 import com.fang.weixin.WXShareHandler;
 
@@ -70,10 +70,10 @@ public abstract class WEActivity extends WXEntryActivity {
 	 */
 	public boolean isNeedUpdateVersion() {
 		long now = new Date().getTime();
-		long last = SharedPreferencesHelper.getInstance().getLong(
-                SharedPreferencesHelper.LAUNCH_LAST_TIME, 0);
-		SharedPreferencesHelper.getInstance().setLong(
-                SharedPreferencesHelper.LAUNCH_LAST_TIME, new Date().getTime());
+		long last = SharedPreferencesUtil.getInstance().getLong(
+                SharedPreferencesUtil.LAUNCH_LAST_TIME, 0);
+		SharedPreferencesUtil.getInstance().setLong(
+                SharedPreferencesUtil.LAUNCH_LAST_TIME, new Date().getTime());
 		if (now - last > CustomConstant.ONE_DAY) {
 			return true;
 		}

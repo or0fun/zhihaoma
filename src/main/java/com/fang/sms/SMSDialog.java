@@ -30,7 +30,7 @@ import com.fang.common.util.LogOperate;
 import com.fang.span.MySpan;
 import com.fang.speach.SpeachHelper;
 import com.fang.util.MessageWhat;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 import com.iflytek.cloud.SpeechError;
 import com.iflytek.cloud.SpeechSynthesizer;
 import com.iflytek.cloud.SynthesizerListener;
@@ -180,8 +180,8 @@ public class SMSDialog implements OnClickListener {
 			LogOperate.updateLog(mContext, LogCode.SMS_INCOMING_DIALOG_SHOW);
 			//播报
 			if (BaseUtil.isWiredHeadsetOn(mContext)) {
-				if (SharedPreferencesHelper.getInstance().getBoolean(
-                        SharedPreferencesHelper.SETTING_BROADCAST_WHEN_WIREDHEADSETON, true)) {
+				if (SharedPreferencesUtil.getInstance().getBoolean(
+                        SharedPreferencesUtil.SETTING_BROADCAST_WHEN_WIREDHEADSETON, true)) {
 					broadcastContent(createSMSBroadcastContent());
 					// 日志
 					LogOperate.updateLog(mContext, LogCode.SMS_BROADCAST);

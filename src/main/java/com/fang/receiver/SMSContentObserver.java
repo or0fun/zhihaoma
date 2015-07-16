@@ -10,7 +10,7 @@ import com.fang.common.CustomConstant;
 import com.fang.common.util.DebugLog;
 import com.fang.sms.SMSHandler;
 import com.fang.sms.SMSHelper;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 public class SMSContentObserver extends ContentObserver {
 
@@ -25,16 +25,16 @@ public class SMSContentObserver extends ContentObserver {
 	public SMSContentObserver(Context context, Handler handler) {
 		super(handler);
 		mContext = context;
-		SharedPreferencesHelper.getInstance().setLong(
-				SharedPreferencesHelper.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(mContext));
+		SharedPreferencesUtil.getInstance().setLong(
+				SharedPreferencesUtil.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(mContext));
 		mHandler = SMSHandler.getInstance(context);
 	}
 
 	@Override
 	public void onChange(boolean selfChange) {
 		DebugLog.d("SMSContentObserver", "selfChange");
-		lastTime = SharedPreferencesHelper.getInstance().getLong(
-				SharedPreferencesHelper.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(mContext) - 1);
+		lastTime = SharedPreferencesUtil.getInstance().getLong(
+				SharedPreferencesUtil.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(mContext) - 1);
 
 		Cursor cusor = mContext.getContentResolver().query(CustomConstant.SMS_INBOX_URI, null,
 				null, null, "date desc");
@@ -65,8 +65,8 @@ public class SMSContentObserver extends ContentObserver {
 			}
 			cusor.close();
 			if (maxTime > lastTime) {
-				SharedPreferencesHelper.getInstance().setLong(
-						SharedPreferencesHelper.SENT_SMS_LAST_TIME, maxTime);
+				SharedPreferencesUtil.getInstance().setLong(
+						SharedPreferencesUtil.SENT_SMS_LAST_TIME, maxTime);
 			}
 		}
 	}

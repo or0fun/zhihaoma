@@ -2,7 +2,7 @@ package com.fang.base;
 
 import android.content.Context;
 
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 /**
  * Created by benren.fj on 6/7/15.
@@ -21,6 +21,6 @@ public class Model {
     }
 
     public int getCurrentFragment() {
-        return SharedPreferencesHelper.getInstance().getInt(SharedPreferencesHelper.SELECTED_PAGE, NUMBER_FRAGMENT);
+        return SharedPreferencesUtil.getInstance().getInt(SharedPreferencesUtil.SELECTED_PAGE, NUMBER_FRAGMENT);
     }
 }

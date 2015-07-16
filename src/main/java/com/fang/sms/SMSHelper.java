@@ -6,7 +6,7 @@ import android.database.Cursor;
 import android.telephony.SmsManager;
 
 import com.fang.common.CustomConstant;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.util.List;
 
@@ -74,8 +74,8 @@ public class SMSHelper {
 	 * @return
 	 */
 	public static List<SendSMSInfo> getSendSMSInfos(Context context) {
-		return (List<SendSMSInfo>) SharedPreferencesHelper.getInstance().getObject(
-				SharedPreferencesHelper.TIMING_SMS_INFO);
+		return (List<SendSMSInfo>) SharedPreferencesUtil.getInstance().getObject(
+				SharedPreferencesUtil.TIMING_SMS_INFO);
 	}
 
 	/**
@@ -85,8 +85,8 @@ public class SMSHelper {
 	 */
 	public static void saveSendSMSInfos(Context context,
 			List<SendSMSInfo> sendSMSInfoList) {
-		SharedPreferencesHelper.getInstance().setObject(
-				SharedPreferencesHelper.TIMING_SMS_INFO, sendSMSInfoList);
+		SharedPreferencesUtil.getInstance().setObject(
+				SharedPreferencesUtil.TIMING_SMS_INFO, sendSMSInfoList);
 	}
 
 	/**
@@ -95,14 +95,14 @@ public class SMSHelper {
 	 * @param requestCode
 	 */
 	public static void removeSMSInfo(Context context, int requestCode) {
-		List<SendSMSInfo> sendSMSInfoList = (List<SendSMSInfo>) SharedPreferencesHelper.getInstance()
-				.getObject(SharedPreferencesHelper.TIMING_SMS_INFO);
+		List<SendSMSInfo> sendSMSInfoList = (List<SendSMSInfo>) SharedPreferencesUtil.getInstance()
+				.getObject(SharedPreferencesUtil.TIMING_SMS_INFO);
 		if (null != sendSMSInfoList) {
 			for (SendSMSInfo info : sendSMSInfoList) {
 				if (info.getResultCode() == requestCode) {
 					sendSMSInfoList.remove(info);
-					SharedPreferencesHelper.getInstance().setObject(
-							SharedPreferencesHelper.TIMING_SMS_INFO,
+					SharedPreferencesUtil.getInstance().setObject(
+							SharedPreferencesUtil.TIMING_SMS_INFO,
 							sendSMSInfoList);
 				}
 			}

@@ -23,7 +23,7 @@ import com.fang.map.BDMapListener;
 import com.fang.common.util.ServerUtil;
 import com.fang.util.RequestUtil;
 import com.fang.util.NotificationHelper;
-import com.fang.util.SharedPreferencesHelper;
+import com.fang.util.SharedPreferencesUtil;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,7 +45,7 @@ public class WeatherHelper {
      */
     public static void postWeatherNotification(final Context context) {
 
-        if (false == SharedPreferencesHelper.getInstance().getBoolean(SharedPreferencesHelper.SETTING_WEATHER_NOTIFICATION, true)) {
+        if (false == SharedPreferencesUtil.getInstance().getBoolean(SharedPreferencesUtil.SETTING_WEATHER_NOTIFICATION, true)) {
             DebugLog.d(TAG, "postWeatherNotification: SETTING_WEATHER_NOTIFICATION is false");
             return;
         }
