@@ -404,7 +404,12 @@ public class CallDialog implements OnClickListener {
 	private void updateViewPosition() {
 		mLayoutParams.x = (int) (mRawX - mTouchStartX);
 		mLayoutParams.y = (int) (mRawY - mTouchStartY);
-		mWindowManager.updateViewLayout(mView, mLayoutParams);
+        try {
+            mWindowManager.updateViewLayout(mView, mLayoutParams);
+        } catch (Exception e) {
+            DebugLog.e(TAG, e.toString());
+        }
+        
         SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.CALLING_DIALOG_X, mLayoutParams.x);
         SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.CALLING_DIALOG_Y, mLayoutParams.y);
 	}
