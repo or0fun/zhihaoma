@@ -253,12 +253,16 @@ public class CallHelper {
                             PARAM_DATE,
                             BaseUtil.longDateToStringDate(Long.parseLong(cursor.getString(cursor
                                     .getColumnIndexOrThrow(Calls.DATE)))));
-                    long duration = Long.parseLong(cursor.getString(cursor
-                            .getColumnIndexOrThrow(Calls.DURATION)));
-
-                    callRecord.put(PARAM_DURATION,
-                            BaseUtil.secondsToString(duration));
-
+                    try {
+                        long duration = cursor.getLong(cursor
+                                .getColumnIndexOrThrow(Calls.DURATION));
+                        //时长
+                        callRecord.put(PARAM_DURATION,
+                                BaseUtil.secondsToString(duration));
+                    } catch (Exception e) {
+                        //时长
+                        callRecord.put(PARAM_DURATION, "");
+                    }
 
                     callRecords.add(callRecord);
 
