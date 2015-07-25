@@ -470,12 +470,16 @@ public class CallHelper {
                             //日期
                             callRecord.put(PARAM_DATE, cursor.getString(cursor
                                     .getColumnIndexOrThrow(Calls.DATE)));
-                            long duration = Long.parseLong(cursor.getString(cursor
-                                    .getColumnIndexOrThrow(Calls.DURATION)));
-
-                            //时长
-                            callRecord.put(PARAM_DURATION,
-                                    BaseUtil.secondsToString(duration));
+                            try {
+                                long duration = cursor.getLong(cursor
+                                        .getColumnIndexOrThrow(Calls.DURATION));
+                                //时长
+                                callRecord.put(PARAM_DURATION,
+                                        BaseUtil.secondsToString(duration));
+                            } catch (Exception e) {
+                                //时长
+                                callRecord.put(PARAM_DURATION, "");
+                            }
                             //信息
                             callRecord.put(
                                     PARAM_INFO,
