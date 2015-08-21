@@ -1,7 +1,6 @@
 package com.fang.setting;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
@@ -21,10 +20,12 @@ import com.fang.callsms.R;
 import com.fang.common.controls.CustomSlideSwitch;
 import com.fang.common.controls.CustomSwitchPreference;
 import com.fang.common.util.DebugLog;
-import com.fang.logs.LogCode;
 import com.fang.common.util.LogOperate;
+import com.fang.logs.LogCode;
 import com.fang.weather.WeatherHelper;
 import com.fang.weixin.WXConstants;
+import com.umeng.fb.FeedbackAgent;
+import com.umeng.message.PushAgent;
 
 /**
  * 设置页面
@@ -36,10 +37,20 @@ public class SettingFragment extends BaseFragment implements OnClickListener {
 	protected Context mContext;
     private final String TAG = "SettingFragment";
 
+    FeedbackAgent mFeedbackAgent;
+
     @Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		mContext = getActivity();
+
+
+        //友盟 反馈
+        mFeedbackAgent = new FeedbackAgent(mContext);
+        mFeedbackAgent.sync();
+        mFeedbackAgent.openFeedbackPush();
+        PushAgent.getInstance(getActivity()).enable();
+        mFeedbackAgent.closeAudioFeedback();
 	}
 
 	@Override
@@ -57,7 +68,8 @@ public class SettingFragment extends BaseFragment implements OnClickListener {
 		feedbackBtn.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				startActivity(new Intent(mContext, FeedbackActivity.class));
+//				startActivity(new Intent(mContext, FeedbackActivity.class));
+                mFeedbackAgent.startFeedbackActivity();
 			}
 		});
 

@@ -46,6 +46,10 @@ import com.fang.util.SharedPreferencesUtil;
 import com.fang.util.Util;
 import com.fang.version.UpdateVersion;
 import com.fang.zxing.activity.CaptureActivity;
+import com.umeng.analytics.AnalyticsConfig;
+import com.umeng.fb.push.FeedbackPush;
+import com.umeng.message.PushAgent;
+import com.umeng.message.UmengRegistrar;
 
 import java.util.ArrayList;
 import java.util.Date;
@@ -137,6 +141,8 @@ public class MainActivity extends WEActivity implements OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
+
+        initUMeng();
 		
 		mTitleBar = findViewById(R.id.titleBar);
 
@@ -516,4 +522,22 @@ public class MainActivity extends WEActivity implements OnClickListener {
         public void onAnimationRepeat(Animation animation) {
         }
     };
+
+    private void initUMeng() {
+        //umeng
+        try {
+            AnalyticsConfig.setAppkey(CustomConstant.UMENG_KEY);
+            AnalyticsConfig.setChannel(Global.channel);
+            FeedbackPush.getInstance(this).init(true);
+            PushAgent mPushAgent = PushAgent.getInstance(this);
+            mPushAgent.setMessageChannel(Global.channel);
+            mPushAgent.enable();
+            PushAgent.getInstance(this).onAppStart();
+
+            String device_token = UmengRegistrar.getRegistrationId(this);
+            DebugLog.i(TAG, device_token);
+        } catch (Throwable throwable) {
+            DebugLog.e(TAG, throwable);
+        }
+    }
 }

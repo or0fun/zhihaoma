@@ -7,6 +7,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 
+import com.umeng.analytics.MobclickAgent;
+
 public class BaseFragment extends Fragment {
 
 	public Context mContext;
@@ -38,11 +40,13 @@ public class BaseFragment extends Fragment {
 	@Override
 	public void onPause() {
 		super.onPause();
+        MobclickAgent.onPageEnd(this.getClass().getName()); //统计页面
 	}
 
 	@Override
 	public void onResume() {
 		super.onResume();
+        MobclickAgent.onPageStart(this.getClass().getName()); //统计页面
 	}
 
 	@Override

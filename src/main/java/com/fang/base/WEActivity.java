@@ -2,11 +2,14 @@ package com.fang.base;
 
 import android.os.Bundle;
 
+import com.fang.common.util.DebugLog;
 import com.fang.weixin.WXEntryActivity;
 import com.fang.weixin.WXShareHandler;
+import com.umeng.analytics.MobclickAgent;
 
 public abstract class WEActivity extends WXEntryActivity {
 
+    private final String TAG = "WEActivity";
     protected WXShareHandler mShareHandler;
 	
 	@Override
@@ -26,6 +29,21 @@ public abstract class WEActivity extends WXEntryActivity {
     @Override
     protected void onResume() {
         super.onResume();
+        try {
+            MobclickAgent.onResume(this);
+        } catch (Throwable throwable) {
+            DebugLog.e(TAG, throwable);
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        try {
+            MobclickAgent.onPause(this);
+        } catch (Throwable throwable) {
+            DebugLog.e(TAG, throwable);
+        }
     }
 
     @Override
