@@ -330,7 +330,7 @@ public class CallDialog implements OnClickListener {
 				mVibrator.vibrate(pattern, -1); // 重复两次上面的pattern
 												// 如果只想震动一次，index设为-1
 			}
-			mWindowManager.addView(mView, mLayoutParams);
+			BaseUtil.addView(mWindowManager, mView, mLayoutParams);
 		}
 	}
 

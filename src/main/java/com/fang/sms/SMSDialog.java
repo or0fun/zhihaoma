@@ -175,7 +175,7 @@ public class SMSDialog implements OnClickListener {
 			isShowing = true;
 			long[] pattern = { 100, 1000 }; // 停止 开启
 			mVibrator.vibrate(pattern, -1); // 重复两次上面的pattern 如果只想震动一次，index设为-1
-			mWindowManager.addView(mView, mLayoutParams);
+			BaseUtil.addView(mWindowManager, mView, mLayoutParams);
 			// 日志
 			LogOperate.updateLog(mContext, LogCode.SMS_INCOMING_DIALOG_SHOW);
 			//播报

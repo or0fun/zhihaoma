@@ -488,7 +488,7 @@ public class ContactFragment extends BaseFragment implements IContactListener {
 						| WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
 				PixelFormat.TRANSLUCENT);
         try {
-            mWindowManager.addView(mOverlay, lp);
+            BaseUtil.addView(mWindowManager, mOverlay, lp);
             mIsShowDalay = true;
         }catch (Exception e) {
             DebugLog.e(TAG, "initOverlay: " + e.toString());

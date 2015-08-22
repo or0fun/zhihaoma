@@ -289,7 +289,7 @@ public class CallRecordDialog implements OnClickListener {
 					BaseUtil.removeView(mWindowManager, mView);
 				}
 				mIsShowing = true;
-				mWindowManager.addView(mView, mLayoutParams);
+				BaseUtil.addView(mWindowManager, mView, mLayoutParams);
 			}
 		}else {
 			if (null == mDialog) {
