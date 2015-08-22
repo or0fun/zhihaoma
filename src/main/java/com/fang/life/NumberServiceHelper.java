@@ -160,9 +160,9 @@ public class NumberServiceHelper {
 
                     }
                 } catch (JSONException e) {
-                    DebugLog.e(TAG, "Error parsing data " + e.toString());
+                    DebugLog.e(TAG, e);
                 } catch (Exception e) {
-                    DebugLog.e(TAG, "Error parsing data " + e.toString());
+                    DebugLog.e(TAG, e);
                 } finally {
                     SharedPreferencesUtil.getInstance().setInt(SharedPreferencesUtil.OFFLINE_NUMBER_STARTID, startID);
                 }
