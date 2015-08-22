@@ -15,6 +15,7 @@ import com.fang.common.util.StringUtil;
 import com.fang.database.NumberDatabaseManager;
 import com.fang.datatype.ExtraName;
 import com.fang.util.MessageWhat;
+import com.fang.util.Util;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -88,7 +89,7 @@ public class CallHelper {
         String lastDateString = null;
         if (null != cursor) {
             if (cursor.moveToFirst()) {
-                long date = Long.parseLong(cursor.getString(cursor
+                long date = Util.parseLong(cursor.getString(cursor
                         .getColumnIndexOrThrow(Calls.DATE)));
                 lastDateString = BaseUtil.longDateToStringDate(date);
             }
@@ -251,7 +252,7 @@ public class CallHelper {
 
                     callRecord.put(
                             PARAM_DATE,
-                            BaseUtil.longDateToStringDate(Long.parseLong(cursor.getString(cursor
+                            BaseUtil.longDateToStringDate(Util.parseLong(cursor.getString(cursor
                                     .getColumnIndexOrThrow(Calls.DATE)))));
                     try {
                         long duration = cursor.getLong(cursor

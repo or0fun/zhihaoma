@@ -19,9 +19,9 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 
-import com.fang.common.base.Global;
 import com.fang.callsms.MainActivity;
 import com.fang.callsms.R;
+import com.fang.common.base.Global;
 import com.fang.common.controls.CustomDialog;
 import com.fang.common.util.BaseUtil;
 import com.fang.common.util.DebugLog;
@@ -241,5 +241,15 @@ public class Util {
         intent.putExtra(ExtraName.URL, url);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
         Global.application.startActivity(intent);
+    }
+
+    public static long parseLong(String str) {
+        long l = 0;
+        try {
+            l = Long.parseLong(str);
+        } catch (Throwable throwable) {
+            DebugLog.e(TAG, throwable);
+        }
+        return l;
     }
 }
