@@ -31,39 +31,43 @@ public class SMSReceiver extends BroadcastReceiver {
         }
 		mHandler = SMSHandler.getInstance(context);
 
-		for (SmsMessage message : messages) {
-			DebugLog.d(TAG, message.getOriginatingAddress() + " : " +
-			message.getDisplayOriginatingAddress() + " : " +
-			message.getDisplayMessageBody() + " : " +
-			message.getTimestampMillis());
+        try {
+            for (SmsMessage message : messages) {
+                DebugLog.d(TAG, message.getOriginatingAddress() + " : " +
+                        message.getDisplayOriginatingAddress() + " : " +
+                        message.getDisplayMessageBody() + " : " +
+                        message.getTimestampMillis());
 
-			String addressString = message.getDisplayOriginatingAddress();
-			String bodyString = message.getDisplayMessageBody();
-			Cursor cusor = context.getContentResolver().query(CustomConstant.SMS_INBOX_URI, null,
-					"address = " + addressString, null, "date desc limit 1");
-			if (cusor != null) {
-				long smsTime = 0;
-				long lastTime = SharedPreferencesUtil.getInstance().getLong(
-						SharedPreferencesUtil.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(context) - 1);
-				while (cusor.moveToNext()) {
-					smsTime = cusor.getLong(cusor.getColumnIndex("date"));
-					if (smsTime > lastTime) {
-						SharedPreferencesUtil.getInstance().setLong(
-								SharedPreferencesUtil.SENT_SMS_LAST_TIME, smsTime);
-						int id = cusor.getInt(cusor.getColumnIndex("_id"));
-						mHandler.sendMessage(mHandler.obtainMessage(
-									SMSHandler.SHOW_MSG,
-									new MySMSMessage(
-										addressString, 
-										bodyString,
-										cusor.getString(cusor.getColumnIndex("date")),
-										id)));
-					}
-				}
-				cusor.close();
-			}
-		}
-	}
+                String addressString = message.getDisplayOriginatingAddress();
+                String bodyString = message.getDisplayMessageBody();
+                Cursor cusor = context.getContentResolver().query(CustomConstant.SMS_INBOX_URI, null,
+                        "address = '" + addressString + "'", null, "date desc limit 1");
+                if (cusor != null) {
+                    long smsTime = 0;
+                    long lastTime = SharedPreferencesUtil.getInstance().getLong(
+                            SharedPreferencesUtil.SENT_SMS_LAST_TIME, SMSHelper.getLastTime(context) - 1);
+                    while (cusor.moveToNext()) {
+                        smsTime = cusor.getLong(cusor.getColumnIndex("date"));
+                        if (smsTime > lastTime) {
+                            SharedPreferencesUtil.getInstance().setLong(
+                                    SharedPreferencesUtil.SENT_SMS_LAST_TIME, smsTime);
+                            int id = cusor.getInt(cusor.getColumnIndex("_id"));
+                            mHandler.sendMessage(mHandler.obtainMessage(
+                                    SMSHandler.SHOW_MSG,
+                                    new MySMSMessage(
+                                            addressString,
+                                            bodyString,
+                                            cusor.getString(cusor.getColumnIndex("date")),
+                                            id)));
+                        }
+                    }
+                    cusor.close();
+                }
+            }
+        } catch (Exception e) {
+            DebugLog.e(TAG, e);
+        }
+    }
 
 	/**
 	 * 从Intent获取Message
