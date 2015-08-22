@@ -186,15 +186,15 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
 	public void onClick(View view) {
         int id = view.getId();
 		if (view == mFoodListLayout) {
-			mContext.startActivity(new Intent(NumberServiceHelper.ACTION_FOOD));
+			BaseUtil.startActivity(mContext, new Intent(NumberServiceHelper.ACTION_FOOD));
 		} else if (view == mHouseListLayout) {
-			mContext.startActivity(new Intent(NumberServiceHelper.ACTION_HOUSE));
+            BaseUtil.startActivity(mContext, new Intent(NumberServiceHelper.ACTION_HOUSE));
 		} else if (view == mExpressListLayout) {
-			mContext.startActivity(new Intent(NumberServiceHelper.ACTION_EXPRESS));
+            BaseUtil.startActivity(mContext, new Intent(NumberServiceHelper.ACTION_EXPRESS));
 		} else if (view == mServiceListLayout) {
-			mContext.startActivity(new Intent(NumberServiceHelper.ACTION_SERVICE));
+            BaseUtil.startActivity(mContext, new Intent(NumberServiceHelper.ACTION_SERVICE));
 		} else if (view == mSearchExpressBtn) {
-			mContext.startActivity(new Intent(mContext, ExpressListActivity.class));
+            BaseUtil.startActivity(mContext, new Intent(mContext, ExpressListActivity.class));
 		} else if (id == R.id.scan) {//扫一扫
             Intent openCameraIntent = new Intent(mContext,
                     CaptureActivity.class);
@@ -211,7 +211,7 @@ public class LifeFragment extends BaseFragment implements OnClickListener {
         } else if (id == R.id.zhihu) {
             Util.openUrl(RequestUrl.ZHIHU);
         } else if (id == R.id.mylove) {
-            mContext.startActivity(new Intent(mContext, ChatActivity.class));
+            BaseUtil.startActivity(mContext, new Intent(mContext, ChatActivity.class));
         }
 	}
 

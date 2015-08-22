@@ -282,7 +282,7 @@ public class ContactHelper {
                 number);
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
                 | Intent.FLAG_ACTIVITY_NEW_TASK);
-        context.startActivity(intent);
+        BaseUtil.startActivity(context, intent);
     }
 
     /**
@@ -294,7 +294,7 @@ public class ContactHelper {
         Intent intent = new Intent();
         intent.setAction(Intent.ACTION_VIEW);
         intent.setData(android.provider.ContactsContract.Contacts.CONTENT_URI);
-        context.startActivity(intent);
+        BaseUtil.startActivity(context, intent);
     }
 
     /**

@@ -348,7 +348,7 @@ public class CallRecordDialog implements OnClickListener {
 				smsToUri);
 		intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP
 				| Intent.FLAG_ACTIVITY_NEW_TASK);
-		mContext.startActivity(intent);
+		BaseUtil.startActivity(mContext, intent);
 	}
 
 	@Override

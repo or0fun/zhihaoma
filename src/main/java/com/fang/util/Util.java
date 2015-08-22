@@ -31,7 +31,7 @@ import com.fang.datatype.ExtraName;
 import com.fang.listener.IDeleteConfirmListener;
 import com.fang.receiver.AlarmReceiver;
 
-public class Util {
+public class Util extends BaseUtil {
 
     private static final String TAG = "Util";
     private static final String ACTION_URL = "com.fang.url";
@@ -232,7 +232,7 @@ public class Util {
 	}
 
     /**
-     * 打开webview
+     * 打开自己的webview
      * @param url
      */
     public static void openUrl(String url) {
@@ -243,13 +243,4 @@ public class Util {
         Global.application.startActivity(intent);
     }
 
-    public static long parseLong(String str) {
-        long l = 0;
-        try {
-            l = Long.parseLong(str);
-        } catch (Throwable throwable) {
-            DebugLog.e(TAG, throwable);
-        }
-        return l;
-    }
 }

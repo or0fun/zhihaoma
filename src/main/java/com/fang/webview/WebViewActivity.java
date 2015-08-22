@@ -3,7 +3,6 @@ package com.fang.webview;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.net.http.SslError;
 import android.os.Bundle;
 import android.view.KeyEvent;
@@ -182,8 +181,7 @@ public class WebViewActivity extends WEActivity implements View.OnClickListener 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
             if (url.startsWith("mailto:") || url.startsWith("geo:") ||url.startsWith("tel:")) {
-                Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-                startActivity(intent);
+                BaseUtil.openURL(mContext, url);
                 return true;
             }
             return super.shouldOverrideUrlLoading(view, url);
@@ -261,9 +259,7 @@ public class WebViewActivity extends WEActivity implements View.OnClickListener 
         @Override
         public void onDownloadStart(String url, String userAgent, String contentDisposition, String mimetype,
                                     long contentLength) {
-            Uri uri = Uri.parse(url);
-            Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-            startActivity(intent);
+            BaseUtil.openURL(mContext, url);
             finish();
         }
 

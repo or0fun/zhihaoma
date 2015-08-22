@@ -152,7 +152,7 @@ public class CallRecordAdapter extends BaseAdapter {
 			public void onClick(View arg0) {
 				Intent intent = new Intent(mContext, CommentActivity.class);
 				intent.putExtra(ExtraName.PARAM_NUMBER, record.get(ExtraName.PARAM_NUMBER).toString());
-				mContext.startActivity(intent);
+				BaseUtil.startActivity(mContext, intent);
 			}
 		});
 
