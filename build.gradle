@@ -31,15 +31,15 @@ android {
     }
     productFlavors {
         _develop {}
-//        wandoujia {}
-//        baidu {}
-//        c360 {}
-//        blog {}
-//        hiapk {}
-//        anzhi {}
-//        qq {}
-//        lenovo {}
-//        pp {}
+        wandoujia {}
+        baidu {}
+        c360 {}
+        blog {}
+        hiapk {}
+        anzhi {}
+        qq {}
+        lenovo {}
+        pp {}
     }
 
     sourceSets {
