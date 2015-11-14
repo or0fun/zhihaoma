@@ -526,7 +526,7 @@ public class MainActivity extends WEActivity implements OnClickListener {
     private void initUMeng() {
         //umeng
         try {
-            AnalyticsConfig.setAppkey(CustomConstant.UMENG_KEY);
+            AnalyticsConfig.setAppkey(mContext, CustomConstant.UMENG_KEY);
             AnalyticsConfig.setChannel(Global.channel);
             FeedbackPush.getInstance(this).init(true);
             PushAgent mPushAgent = PushAgent.getInstance(this);
